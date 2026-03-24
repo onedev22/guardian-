@@ -3,6 +3,8 @@ package com.amurayada.guardianapp.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,6 +20,7 @@ fun SettingsScreen(
     onTestCrash: () -> Unit,
     emergencyNumber: String,
     onEmergencyNumberChange: (String) -> Unit,
+    onNavigateToGraphs: () -> Unit,
     onBack: () -> Unit
 ) {
     Surface(
@@ -52,7 +55,8 @@ fun SettingsScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(24.dp),
+                    .padding(24.dp)
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 // Emergency Number Setting
@@ -269,6 +273,19 @@ fun SettingsScreen(
                             )
                         }
                     }
+                }
+
+                // Debug Graphs Button
+                Button(
+                    onClick = onNavigateToGraphs,
+                    modifier = Modifier.fillMaxWidth().height(56.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    Icon(Icons.Default.Info, contentDescription = null)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("VER GRÁFICAS")
                 }
             }
         }

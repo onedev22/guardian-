@@ -33,6 +33,7 @@ import com.amurayada.guardianapp.data.local.AppDatabase
 import com.amurayada.guardianapp.data.model.EmergencyContact
 import com.amurayada.guardianapp.service.CrashDetectionService
 import com.amurayada.guardianapp.ui.screens.*
+import com.amurayada.guardianapp.ui.graphs.SensorGraphsScreen
 import com.amurayada.guardianapp.ui.theme.GuardianAppTheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -382,6 +383,13 @@ fun GuardianApp(
                     }
                     context.startActivity(intent)
                 },
+                onNavigateToGraphs = { navController.navigate("sensor_graphs") },
+                onBack = { navController.popBackStack() }
+            )
+        }
+        
+        composable("sensor_graphs") {
+            SensorGraphsScreen(
                 onBack = { navController.popBackStack() }
             )
         }
